@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HPS Global | Service Inquiry</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@700&family=Roboto+Mono:wght@400;700&display=swap');
+        
+        body {
+            background: radial-gradient(circle at center, #F0F4F2 0%, #DDE5E0 100%);
+            color: #2D3436; font-family: 'Inter', sans-serif;
+            min-height: 100vh; display: flex; align-items: center; justify-content: center;
+            padding: 20px;
+        }
+
+        .pearl-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            box-shadow: 0 30px 60px rgba(74, 124, 89, 0.1);
+        }
+
+        .input-field {
+            background: #F9FBF9 !important;
+            border: 1px solid #E2E8E5 !important;
+            transition: all 0.3s;
+        }
+
+        .input-field:focus {
+            border-color: #D4AF37 !important;
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+        }
+
+        .btn-portal {
+            background: linear-gradient(135deg, #1A3C2F 0%, #2D5A44 100%);
+            color: #F0F4F2;
+            letter-spacing: 0.2em;
+            transition: all 0.4s;
+        }
+
+        .btn-portal:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(26, 60, 47, 0.3);
+        }
+
+        textarea::-webkit-scrollbar { width: 5px; }
+        textarea::-webkit-scrollbar-thumb { background: #D4AF37; border-radius: 10px; }
+    </style>
+</head>
+<body>
+    <div class="max-w-2xl w-full">
+        <div class="pearl-card p-8 md:p-12 rounded-[40px]">
+            <div class="text-center mb-10">
+                <span class="text-[10px] uppercase tracking-[0.5em] text-[#4A7C59] font-bold">Institutional Service Request</span>
+                <h2 class="text-3xl font-playfair font-bold text-[#1A3C2F] mt-2">Professional Inquiry</h2>
+            </div>
+
+            <form onsubmit="sendServiceRequest(event)" class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
+                <div class="md:col-span-1">
+                    <label class="text-[10px] uppercase font-bold text-gray-500 ml-1">Full Name / Entity</label>
+                    <input type="text" id="serviceName" required class="input-field w-full p-3 rounded-xl text-sm outline-none mt-1" placeholder="Ex: Hamilton Asset Mgmt">
+                </div>
+
+                <div class="md:col-span-1">
+                    <label class="text-[10px] uppercase font-bold text-gray-500 ml-1">Corporate Email</label>
+                    <input type="email" id="serviceEmail" required class="input-field w-full p-3 rounded-xl text-sm outline-none mt-1" placeholder="executive@holding.ch">
+                </div>
+
+                <div class="md:col-span-1">
+                    <label class="text-[10px] uppercase font-bold text-gray-500 ml-1">City / Hub</label>
+                    <input type="text" id="serviceLocal" required class="input-field w-full p-3 rounded-xl text-sm outline-none mt-1" placeholder="Manhattan, Zurich, London">
+                </div>
+
+                <div class="md:col-span-1">
+                    <label class="text-[10px] uppercase font-bold text-gray-500 ml-1">Country</label>
+                    <input type="text" id="serviceCountry" required class="input-field w-full p-3 rounded-xl text-sm outline-none mt-1" placeholder="USA, Switzerland, UK">
+                </div>
+
+                <div class="md:col-span-2">
+                    <label class="text-[10px] uppercase font-bold text-gray-500 ml-1">Contact Number (Include Country Code)</label>
+                    <input type="tel" id="servicePhone" required class="input-field w-full p-3 rounded-xl text-sm outline-none mt-1" placeholder="+41 44 000 00 00">
+                </div>
+
+                <div class="md:col-span-2">
+                    <label class="text-[10px] uppercase font-bold text-gray-500 ml-1">Service Specification</label>
+                    <textarea id="serviceDesc" required rows="4" 
+                        class="input-field w-full p-4 rounded-xl text-sm outline-none mt-1 resize-none" 
+                        placeholder="Project Details: Native Java Core, iOS PWA, Financial Node Infrastructure (NY/CH/BR), Multi-Jurisdictional Systems..."></textarea>
+                </div>
+
+                <button type="submit" class="btn-portal md:col-span-2 py-4 rounded-xl text-[11px] font-bold uppercase mt-4">
+                    Submit Proposal to Architect
+                </button>
+            </form>
+
+            <div class="mt-8 pt-6 border-t border-gray-100 text-center">
+                <p class="text-[10px] text-gray-400">
+                    Governance by <span class="font-bold">IArtium Protocol</span><br>
+                    Live Synchronization: <span class="text-[#4A7C59]">NY-NODE | CH-NODE | BR-NODE</span>
+                </p>
+            </div>
+        </div>
+    </div>
+
+<script>
+    function sendServiceRequest(e) {
+        e.preventDefault();
+        
+        const nome = document.getElementById('serviceName').value;
+        const email = document.getElementById('serviceEmail').value;
+        const local = document.getElementById('serviceLocal').value;
+        const pais = document.getElementById('serviceCountry').value;
+        const fone = document.getElementById('servicePhone').value;
+        const pedido = document.getElementById('serviceDesc').value;
+
+        const seuWhatsapp = "5564992962999"; 
+
+        const textoMensagem = 
+            `🌐 *NEW INSTITUTIONAL INQUIRY*%0A` +
+            `----------------------------%0A` +
+            `👤 *Entity:* ${nome}%0A` +
+            `📧 *Email:* ${email}%0A` +
+            `📍 *Location:* ${local} - ${pais}%0A` +
+            `📞 *Contact:* ${fone}%0A` +
+            `----------------------------%0A` +
+            `📝 *PROJECT SPEC:*%0A${pedido}%0A` +
+            `----------------------------%0A` +
+            `🏦 *Protocol:* HPS Global (Sovereign Architecture)`;
+
+        const linkWhatsapp = `https://api.whatsapp.com/send?phone=${seuWhatsapp}&text=${textoMensagem}`;
+
+        alert("REQUEST REGISTERED.\n\nYour proposal is being routed through the IArtium security mesh for architectural review.");
+        
+        window.open(linkWhatsapp, '_blank');
+    }
+</script>
+</body>
+</html>
